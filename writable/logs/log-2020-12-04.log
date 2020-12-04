@@ -1,0 +1,79 @@
+CRITICAL - 2020-12-04 10:57:22 --> Unable to connect to the database.
+#0 /Users/iwansafr/Sites/sicepat/system/Database/BaseConnection.php(646): CodeIgniter\Database\BaseConnection->initialize()
+#1 /Users/iwansafr/Sites/sicepat/system/Database/BaseBuilder.php(1860): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 /Users/iwansafr/Sites/sicepat/app/Controllers/HomeController.php(13): CodeIgniter\Database\BaseBuilder->get()
+#3 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(918): App\Controllers\HomeController->index()
+#4 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(404): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HomeController))
+#5 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(312): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 /Users/iwansafr/Sites/sicepat/public/index.php(45): CodeIgniter\CodeIgniter->run()
+#7 /Users/iwansafr/Sites/sicepat/system/Commands/Server/rewrite.php(34): require_once('/Users/iwansafr...')
+#8 {main}
+CRITICAL - 2020-12-04 10:58:16 --> Unable to connect to the database.
+#0 /Users/iwansafr/Sites/sicepat/system/Database/BaseConnection.php(646): CodeIgniter\Database\BaseConnection->initialize()
+#1 /Users/iwansafr/Sites/sicepat/system/Database/BaseBuilder.php(1860): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#2 /Users/iwansafr/Sites/sicepat/app/Controllers/HomeController.php(13): CodeIgniter\Database\BaseBuilder->get()
+#3 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(918): App\Controllers\HomeController->index()
+#4 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(404): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HomeController))
+#5 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(312): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#6 /Users/iwansafr/Sites/sicepat/public/index.php(45): CodeIgniter\CodeIgniter->run()
+#7 /Users/iwansafr/Sites/sicepat/system/Commands/Server/rewrite.php(34): require_once('/Users/iwansafr...')
+#8 {main}
+CRITICAL - 2020-12-04 11:02:31 --> Table 'sicepat.blts' doesn't exist
+#0 /Users/iwansafr/Sites/sicepat/system/Database/MySQLi/Connection.php(331): mysqli->query('SELECT *\nFROM `...')
+#1 /Users/iwansafr/Sites/sicepat/system/Database/BaseConnection.php(741): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 /Users/iwansafr/Sites/sicepat/system/Database/BaseConnection.php(669): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 /Users/iwansafr/Sites/sicepat/system/Database/BaseBuilder.php(1860): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Users/iwansafr/Sites/sicepat/system/Model.php(404): CodeIgniter\Database\BaseBuilder->get()
+#5 /Users/iwansafr/Sites/sicepat/app/Controllers/HomeController.php(15): CodeIgniter\Model->find()
+#6 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(918): App\Controllers\HomeController->index()
+#7 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(404): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HomeController))
+#8 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(312): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /Users/iwansafr/Sites/sicepat/public/index.php(45): CodeIgniter\CodeIgniter->run()
+#10 /Users/iwansafr/Sites/sicepat/system/Commands/Server/rewrite.php(34): require_once('/Users/iwansafr...')
+#11 {main}
+CRITICAL - 2020-12-04 11:26:32 --> Class 'App\Models\Blt' not found
+#0 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(918): App\Controllers\HomeController->index()
+#1 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(404): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HomeController))
+#2 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(312): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 /Users/iwansafr/Sites/sicepat/public/index.php(45): CodeIgniter\CodeIgniter->run()
+#4 /Users/iwansafr/Sites/sicepat/system/Commands/Server/rewrite.php(34): require_once('/Users/iwansafr...')
+#5 {main}
+CRITICAL - 2020-12-04 11:26:40 --> Class 'App\Models\Blt' not found
+#0 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(918): App\Controllers\HomeController->index()
+#1 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(404): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HomeController))
+#2 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(312): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#3 /Users/iwansafr/Sites/sicepat/public/index.php(45): CodeIgniter\CodeIgniter->run()
+#4 /Users/iwansafr/Sites/sicepat/system/Commands/Server/rewrite.php(34): require_once('/Users/iwansafr...')
+#5 {main}
+CRITICAL - 2020-12-04 11:26:58 --> Unknown column 'valid_count' in 'where clause'
+#0 /Users/iwansafr/Sites/sicepat/system/Database/MySQLi/Connection.php(331): mysqli->query('SELECT *\nFROM `...')
+#1 /Users/iwansafr/Sites/sicepat/system/Database/BaseConnection.php(741): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 /Users/iwansafr/Sites/sicepat/system/Database/BaseConnection.php(669): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 /Users/iwansafr/Sites/sicepat/system/Database/BaseBuilder.php(1860): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 /Users/iwansafr/Sites/sicepat/system/Model.php(404): CodeIgniter\Database\BaseBuilder->get()
+#5 /Users/iwansafr/Sites/sicepat/app/Controllers/HomeController.php(15): CodeIgniter\Model->find()
+#6 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(918): App\Controllers\HomeController->index()
+#7 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(404): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HomeController))
+#8 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(312): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#9 /Users/iwansafr/Sites/sicepat/public/index.php(45): CodeIgniter\CodeIgniter->run()
+#10 /Users/iwansafr/Sites/sicepat/system/Commands/Server/rewrite.php(34): require_once('/Users/iwansafr...')
+#11 {main}
+CRITICAL - 2020-12-04 11:29:11 --> Undefined variable: data_blt
+#0 /Users/iwansafr/Sites/sicepat/app/Controllers/HomeController.php(20): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', '/Users/iwansafr...', 20, Array)
+#1 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(918): App\Controllers\HomeController->index()
+#2 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(404): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HomeController))
+#3 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(312): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#4 /Users/iwansafr/Sites/sicepat/public/index.php(45): CodeIgniter\CodeIgniter->run()
+#5 /Users/iwansafr/Sites/sicepat/system/Commands/Server/rewrite.php(34): require_once('/Users/iwansafr...')
+#6 {main}
+CRITICAL - 2020-12-04 11:29:21 --> Undefined variable: data_blt
+#0 /Users/iwansafr/Sites/sicepat/app/Views/home/index.php(96): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined varia...', '/Users/iwansafr...', 96, Array)
+#1 /Users/iwansafr/Sites/sicepat/system/View/View.php(246): include('/Users/iwansafr...')
+#2 /Users/iwansafr/Sites/sicepat/system/Common.php(1119): CodeIgniter\View\View->render('home/index', Array, true)
+#3 /Users/iwansafr/Sites/sicepat/app/Controllers/HomeController.php(20): view('home/index', Array)
+#4 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(918): App\Controllers\HomeController->index()
+#5 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(404): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\HomeController))
+#6 /Users/iwansafr/Sites/sicepat/system/CodeIgniter.php(312): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 /Users/iwansafr/Sites/sicepat/public/index.php(45): CodeIgniter\CodeIgniter->run()
+#8 /Users/iwansafr/Sites/sicepat/system/Commands/Server/rewrite.php(34): require_once('/Users/iwansafr...')
+#9 {main}
