@@ -9,6 +9,24 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 
+DROP TABLE IF EXISTS `cabup`;
+CREATE TABLE `cabup` (
+  `id` int(11) NOT NULL,
+  `no` tinyint(2) NOT NULL,
+  `nama` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `suara`;
+CREATE TABLE `suara` (
+  `id` int(11) NOT NULL,
+  `cabup_id` int(11) NOT NULL,
+  `tps_id` int(11) NOT NULL,
+  `total` int(11) NOT NULL,
+  `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 DROP TABLE IF EXISTS `tps`;
 CREATE TABLE `tps` (
   `id` int(11) NOT NULL,
@@ -25,7 +43,6 @@ CREATE TABLE `tps` (
   `foto` varchar(255) NOT NULL,
   `no` tinyint(2) NOT NULL,
   `nik` bigint(20) NOT NULL,
-  `total_suara` int(11) NOT NULL,
   `situasi` tinyint(1) NOT NULL COMMENT '1=hijau,2=kuning,3=merah',
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
@@ -40,6 +57,12 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
+ALTER TABLE `cabup`
+  ADD PRIMARY KEY (`id`);
+
+ALTER TABLE `suara`
+  ADD PRIMARY KEY (`id`);
+
 ALTER TABLE `tps`
   ADD PRIMARY KEY (`id`);
 
@@ -48,6 +71,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `id_UNIQUE` (`id`),
   ADD UNIQUE KEY `username_UNIQUE` (`username`);
 
+
+ALTER TABLE `cabup`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+ALTER TABLE `suara`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 ALTER TABLE `tps`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
