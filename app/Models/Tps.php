@@ -12,9 +12,9 @@ class Tps extends Model
   // protected $returnType = 'array';
   // protected $useSoftDeletes = true;
 
-  protected $allowedFields = ['nama', 'nik', 'alamat', 'pekerjaan', 'foto_diri', 'foto_kk', 'foto_ktp', 'foto_rumah', 'longitude', 'latitude', 'valid_count'];
+  protected $allowedFields = ['kecamatan','desa','dukuh','rw','rt','rt','nama','nama_ktp','telp','wa','email','foto','no','nik','situasi'];
 
-  protected $useTimestamps = true;
+  // protected $useTimestamps = true;
   // protected $createdField = 'created_at';
   // protected $updatedField = 'updated_at';
   // protected $deletedField = 'deleted_at';
@@ -22,8 +22,8 @@ class Tps extends Model
   // protected $validationRules = [];
   // protected $validationMessages = [];
   // protected $skipValidation = false;
-  public function valid()
+  public function situasi()
   {
-    return ['6' => 'Desa', '5' => 'Kecamatan', '4' => 'Dinsos', '3' => 'Provinsi', '2' => 'Kementerian'];
+    return ['1' => 'Hijau', '2' => 'Kuning', '3' => 'Merah'];
   }
 }
