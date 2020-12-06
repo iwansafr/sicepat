@@ -4,17 +4,17 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class User extends Model
+class Cabup extends Model
 {
-  protected $table = 'users';
+  protected $table = 'cabup';
   protected $primaryKey = 'id';
 
   // protected $returnType = 'array';
   // protected $useSoftDeletes = true;
 
-  protected $allowedFields = ['username', 'password', 'role'];
+  protected $allowedFields = ['nama', 'no', 'foto'];
 
-  // protected $useTimestamps = false;
+  protected $useTimestamps = true;
   // protected $createdField = 'created_at';
   // protected $updatedField = 'updated_at';
   // protected $deletedField = 'deleted_at';
@@ -22,8 +22,4 @@ class User extends Model
   // protected $validationRules = [];
   // protected $validationMessages = [];
   // protected $skipValidation = false;
-  public function role()
-  {
-    return ['1' => 'Admin', '2' => 'Korcam', '3' => 'Tps'];
-  }
 }

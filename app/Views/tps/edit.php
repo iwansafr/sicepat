@@ -195,7 +195,7 @@ $session = session();
                   $valid = '';
                   $value = !empty($data['rt']) ? $data['rt'] : old('rt');
                 }
-                echo form_input(['name' => 'rt', 'placeholder' => 'rt', 'class' => 'form-control ' . $valid, 'value' => $value]); ?>
+                echo form_input(['type'=>'number','name' => 'rt', 'placeholder' => 'rt', 'class' => 'form-control ' . $valid, 'value' => $value]); ?>
                 <div class="invalid-feedback">
                   <?php echo $validation->showError('rt'); ?>
                 </div>
@@ -210,7 +210,7 @@ $session = session();
                   $valid = '';
                   $value = !empty($data['rw']) ? $data['rw'] : old('rw');
                 }
-                echo form_input(['name' => 'rw', 'placeholder' => 'rw', 'class' => 'form-control ' . $valid, 'value' => $value]); ?>
+                echo form_input(['type'=>'number','name' => 'rw', 'placeholder' => 'rw', 'class' => 'form-control ' . $valid, 'value' => $value]); ?>
                 <div class="invalid-feedback">
                   <?php echo $validation->showError('rw'); ?>
                 </div>
