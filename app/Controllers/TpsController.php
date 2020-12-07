@@ -32,7 +32,7 @@ class TpsController extends BaseController
       helper('system');
       return view('layout/forbidden', ['msg' => 'Maaf Data tidak ditemukan', 'alert' => 'danger']);
     } else {
-      return view('tps/detail', ['data' => $data, 'valid' => $tps->valid()]);
+      return view('tps/detail', ['data' => $data]);
     }
   }
   public function new()
@@ -56,7 +56,7 @@ class TpsController extends BaseController
     $validation = [
       'nik' => [
         'label' => 'Nik',
-        'rules' => 'required|is_unique[blts.nik,id,{id}]',
+        'rules' => 'required|is_unique[tps.nik,id,{id}]',
         'errors' => [
           'required' => '{field} Tidak Boleh Kosong',
           'is_unique' => '{field} Sudah Ada',
@@ -69,15 +69,50 @@ class TpsController extends BaseController
           'required' => '{field} Tidak Boleh Kosong',
         ]
       ],
-      'alamat' => [
-        'label' => 'Alamat',
+      'nama_ktp' => [
+        'label' => 'Nama Sesuai Ktp',
         'rules' => 'required',
         'errors' => [
           'required' => '{field} Tidak Boleh Kosong',
         ]
       ],
-      'pekerjaan' => [
-        'label' => 'Pekerjaan',
+      'no' => [
+        'label' => 'Nomor Tps',
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+        ]
+      ],
+      'kecamatan' => [
+        'label' => 'Kecamatan',
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+        ]
+      ],
+      'desa' => [
+        'label' => 'desa',
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+        ]
+      ],
+      'dukuh' => [
+        'label' => 'dukuh',
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+        ]
+      ],
+      'rt' => [
+        'label' => 'rt',
+        'rules' => 'required',
+        'errors' => [
+          'required' => '{field} Tidak Boleh Kosong',
+        ]
+      ],
+      'rw' => [
+        'label' => 'rw',
         'rules' => 'required',
         'errors' => [
           'required' => '{field} Tidak Boleh Kosong',
@@ -87,40 +122,18 @@ class TpsController extends BaseController
     $data = [
       'nama' => $this->request->getPost('nama'),
       'nik' => $this->request->getPost('nik'),
-      'alamat' => $this->request->getPost('alamat'),
-      'pekerjaan' => $this->request->getPost('pekerjaan'),
-      'latitude' => $this->request->getPost('latitude'),
-      'longitude' => $this->request->getPost('longitude'),
-      'valid_count' => session()->get('role')
+      'nama_ktp' => $this->request->getPost('nama_ktp'),
+      'no' => $this->request->getPost('no'),
+      'kecamatan' => $this->request->getPost('kecamatan'),
+      'desa' => $this->request->getPost('desa'),
+      'dukuh' => $this->request->getPost('dukuh'),
+      'rt' => $this->request->getPost('rt'),
+      'rw' => $this->request->getPost('rw'),
     ];
     $tps = new Tps();
-    $validation['foto_diri'] = [
-      'label' => 'Foto Diri',
-      'rules' => 'uploaded[foto_diri]|is_image[foto_diri]',
-      'errors' => [
-        'uploaded' => '{field} Tidak Boleh Kosong',
-        'is_image' => 'format gambar {field} tidak sesuai'
-      ]
-    ];
-    $validation['foto_ktp'] = [
-      'label' => 'Foto KTP',
-      'rules' => 'uploaded[foto_ktp]|is_image[foto_ktp]',
-      'errors' => [
-        'uploaded' => '{field} Tidak Boleh Kosong',
-        'is_image' => 'format gambar {field} tidak sesuai'
-      ]
-    ];
-    $validation['foto_kk'] = [
-      'label' => 'Foto KK',
-      'rules' => 'uploaded[foto_kk]|is_image[foto_kk]',
-      'errors' => [
-        'uploaded' => '{field} Tidak Boleh Kosong',
-        'is_image' => 'format gambar {field} tidak sesuai'
-      ]
-    ];
-    $validation['foto_rumah'] = [
-      'label' => 'Foto Rumah',
-      'rules' => 'uploaded[foto_rumah]|is_image[foto_rumah]',
+    $validation['foto'] = [
+      'label' => 'Foto',
+      'rules' => 'uploaded[foto]|is_image[foto]',
       'errors' => [
         'uploaded' => '{field} Tidak Boleh Kosong',
         'is_image' => 'format gambar {field} tidak sesuai'
@@ -133,79 +146,23 @@ class TpsController extends BaseController
     }
 
     $foto = [];
-    $file = $this->request->getFile('foto_diri');
+    $file = $this->request->getFile('foto');
     if (!empty($file->getClientExtension())) {
-      $foto['foto_diri'] = 'foto_diri-' . $data['nik'] . '.' . $file->getClientExtension();
-      if (file_exists('images/blt' . $foto['foto_diri'])) {
-        unlink('images/tps/' . $foto['foto_diri']);
-        unlink('images/tps/thumb_' . $foto['foto_diri']);
+      $foto['foto'] = 'foto-' . $data['nik'] . '.' . $file->getClientExtension();
+      if (file_exists('images/tps' . $foto['foto'])) {
+        unlink('images/tps/' . $foto['foto']);
+        unlink('images/tps/thumb_' . $foto['foto']);
       }
-      if ($file->move('images/tps/', $foto['foto_diri'])) {
-        $data['foto_diri'] = $foto['foto_diri'];
+      if ($file->move('images/tps/', $foto['foto'])) {
+        $data['foto'] = $foto['foto'];
         $image = \Config\Services::image()
-          ->withFile('images/tps/' . $foto['foto_diri'])
+          ->withFile('images/tps/' . $foto['foto'])
           ->resize(200, 100, true, 'height')
-          ->save('images/tps/thumb_' . $foto['foto_diri']);
+          ->save('images/tps/thumb_' . $foto['foto']);
         $image = \Config\Services::image()
-          ->withFile('images/tps/' . $foto['foto_diri'])
+          ->withFile('images/tps/' . $foto['foto'])
           ->resize(300, 300, true, 'height')
-          ->save('images/tps/' . $foto['foto_diri']);
-      }
-    }
-    $file = $this->request->getFile('foto_ktp');
-    if (!empty($file->getClientExtension())) {
-      $foto['foto_ktp'] = 'foto_ktp-' . $data['nik'] . '.' . $file->getClientExtension();
-      if (file_exists('images/blt' . $foto['foto_ktp'])) {
-        unlink('images/tps/' . $foto['foto_ktp']);
-        unlink('images/tps/thumb_' . $foto['foto_ktp']);
-      }
-      if ($file->move('images/tps/', $foto['foto_ktp'])) {
-        $data['foto_ktp'] = $foto['foto_ktp'];
-        $image = \Config\Services::image()
-          ->withFile('images/tps/' . $foto['foto_ktp'])
-          ->resize(200, 100, true, 'height')
-          ->save('images/tps/thumb_' . $foto['foto_ktp']);
-        $image = \Config\Services::image()
-          ->withFile('images/tps/' . $foto['foto_ktp'])
-          ->resize(300, 300, true, 'height')
-          ->save('images/tps/' . $foto['foto_ktp']);
-      }
-    }
-    $file = $this->request->getFile('foto_kk');
-    if (!empty($file->getClientExtension())) {
-      $foto['foto_kk'] = 'foto_kk-' . $data['nik'] . '.' . $file->getClientExtension();
-      if (file_exists('images/blt' . $foto['foto_kk'])) {
-        unlink('images/tps/' . $foto['foto_kk']);
-      }
-      if ($file->move('images/tps/', $foto['foto_kk'])) {
-        $data['foto_kk'] = $foto['foto_kk'];
-        $image = \Config\Services::image()
-          ->withFile('images/tps/' . $foto['foto_kk'])
-          ->resize(200, 100, true, 'height')
-          ->save('images/tps/thumb_' . $foto['foto_kk']);
-        $image = \Config\Services::image()
-          ->withFile('images/tps/' . $foto['foto_kk'])
-          ->resize(300, 300, true, 'height')
-          ->save('images/tps/' . $foto['foto_kk']);
-      }
-    }
-    $file = $this->request->getFile('foto_rumah');
-    if (!empty($file->getClientExtension())) {
-      $foto['foto_rumah'] = 'foto_rumah-' . $data['nik'] . '.' . $file->getClientExtension();
-      if (file_exists('images/blt' . $foto['foto_rumah'])) {
-        unlink('images/tps/' . $foto['foto_rumah']);
-        unlink('images/tps/thumb_' . $foto['foto_rumah']);
-      }
-      if ($file->move('images/tps/', $foto['foto_rumah'])) {
-        $data['foto_rumah'] = $foto['foto_rumah'];
-        $image = \Config\Services::image()
-          ->withFile('images/tps/' . $foto['foto_rumah'])
-          ->resize(200, 100, true, 'height')
-          ->save('images/tps/thumb_' . $foto['foto_rumah']);
-        $image = \Config\Services::image()
-          ->withFile('images/tps/' . $foto['foto_rumah'])
-          ->resize(300, 300, true, 'height')
-          ->save('images/tps/' . $foto['foto_rumah']);
+          ->save('images/tps/' . $foto['foto']);
       }
     }
     if ($tps->save(
@@ -223,7 +180,7 @@ class TpsController extends BaseController
     $validation = [
       'nik' => [
         'label' => 'Nik',
-        'rules' => 'required|is_unique[blts.nik,id,' . $id . ']',
+        'rules' => 'required|is_unique[tps.nik,id,' . $id . ']',
         'errors' => [
           'required' => '{field} Tidak Boleh Kosong',
           'is_unique' => '{field} Sudah Ada',
@@ -273,7 +230,7 @@ class TpsController extends BaseController
     $file = $this->request->getFile('foto_diri');
     if (!empty($file->getClientExtension())) {
       $foto['foto_diri'] = 'foto_diri-' . $data['nik'] . '.' . $file->getClientExtension();
-      if (file_exists('images/blt' . $foto['foto_diri'])) {
+      if (file_exists('images/tps' . $foto['foto_diri'])) {
         unlink('images/tps/' . $foto['foto_diri']);
         unlink('images/tps/thumb_' . $foto['foto_diri']);
       }
@@ -292,7 +249,7 @@ class TpsController extends BaseController
     $file = $this->request->getFile('foto_ktp');
     if (!empty($file->getClientExtension())) {
       $foto['foto_ktp'] = 'foto_ktp-' . $data['nik'] . '.' . $file->getClientExtension();
-      if (file_exists('images/blt' . $foto['foto_ktp'])) {
+      if (file_exists('images/tps' . $foto['foto_ktp'])) {
         unlink('images/tps/' . $foto['foto_ktp']);
         unlink('images/tps/thumb_' . $foto['foto_ktp']);
       }
@@ -311,7 +268,7 @@ class TpsController extends BaseController
     $file = $this->request->getFile('foto_kk');
     if (!empty($file->getClientExtension())) {
       $foto['foto_kk'] = 'foto_kk-' . $data['nik'] . '.' . $file->getClientExtension();
-      if (file_exists('images/blt' . $foto['foto_kk'])) {
+      if (file_exists('images/tps' . $foto['foto_kk'])) {
         unlink('images/tps/' . $foto['foto_kk']);
       }
       if ($file->move('images/tps/', $foto['foto_kk'])) {
@@ -329,7 +286,7 @@ class TpsController extends BaseController
     $file = $this->request->getFile('foto_rumah');
     if (!empty($file->getClientExtension())) {
       $foto['foto_rumah'] = 'foto_rumah-' . $data['nik'] . '.' . $file->getClientExtension();
-      if (file_exists('images/blt' . $foto['foto_rumah'])) {
+      if (file_exists('images/tps' . $foto['foto_rumah'])) {
         unlink('images/tps/' . $foto['foto_rumah']);
         unlink('images/tps/thumb_' . $foto['foto_rumah']);
       }
@@ -389,43 +346,23 @@ class TpsController extends BaseController
     $spreadsheet->setActiveSheetIndex(0)
       ->setCellValue('A1', 'NIK')
       ->setCellValue('B1', 'NAMA')
-      ->setCellValue('C1', 'ALAMAT')
-      ->setCellValue('D1', 'PEKERJAAN')
-      ->setCellValue('E1', 'LONGITUDE')
-      ->setCellValue('F1', 'LATITUDE');
+      ->setCellValue('C1', 'NOMOR');
     $column = 2;
     foreach ($dataBlt as $key => $value) {
       $spreadsheet->setActiveSheetIndex(0)
         ->setCellValue('A' . $column, $value['nik'])
         ->setCellValue('B' . $column, $value['nama'])
-        ->setCellValue('C' . $column, $value['alamat'])
-        ->setCellValue('D' . $column, $value['pekerjaan'])
-        ->setCellValue('E' . $column, $value['longitude'])
-        ->setCellValue('F' . $column, $value['latitude']);
+        ->setCellValue('C' . $column, $value['no']);
       $column++;
     }
 
     $writer = new Xlsx($spreadsheet);
-    $fileName = 'Data Blt';
+    $fileName = 'Data tps';
 
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
     header('Content-Disposition: attachment;filename=' . $fileName . '.xlsx');
     header('Cache-Control: max-age=0');
 
     $writer->save('php://output');
-  }
-
-  public function valid($id = 0)
-  {
-    if (!empty($id)) {
-      $tps = new Tps();
-      $tps->find($id);
-      $valid_count = !empty($this->request->getVar('valid')) ? session()->get('role') - 1 : session()->get('role');
-      if ($tps->save(['id' => $id, 'valid_count' => $valid_count])) {
-        return redirect()->back()->with('message', ['msg' => 'Data Berhasil diPerbarui', 'alert' => 'success']);
-      } else {
-        return redirect()->back()->with('message', ['msg' => 'Data Gagal diPerbarui', 'alert' => 'danger']);
-      }
-    }
   }
 }

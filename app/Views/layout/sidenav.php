@@ -48,6 +48,17 @@
               ?>
             </nav>
           </div>
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#cabupLayout" aria-expanded="false" aria-controls="cabupLayout">
+            <div class="sb-nav-link-icon"><i class="fas fa-user"></i></div>
+            Cabup
+            <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+          </a>
+          <div class="collapse" id="cabupLayout" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+            <nav class="sb-sidenav-menu-nested nav">
+              <a class="nav-link" href="/cabup/new">tambah Cabup</a>
+              <a class="nav-link" href="/cabup">List Cabup</a>
+            </nav>
+          </div>
         <?php
         } ?>
       </div>

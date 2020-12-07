@@ -44,6 +44,7 @@ $routes->get('/tps/kementerian', 'TpsController::list/2');
 $routes->put('/tps/valid/(:num)', 'TpsController::valid/$1');
 
 $routes->resource('tps', ['controller' => 'TpsController']);
+$routes->resource('cabup', ['controller' => 'CabupController']);
 
 
 $routes->get('/login', 'UserController::login');

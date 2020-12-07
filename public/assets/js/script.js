@@ -11,7 +11,7 @@ $(document).ready(function () {
     $("form").find(".card-body").append("<label><b>Koordinat TPS</b> <i class='fa fa-map'></i></label><br>Latitude: " + position.coords.latitude +
       " | Longitude: " + position.coords.longitude + "<input type='hidden' name='longitude' value='" + position.coords.longitude + "'><input type='hidden' name='latitude' value='" + position.coords.latitude + "'>");
   }
-  getLocation();
+  // getLocation();
 
   function readURL(input, a) {
     if (input.files && input.files[0]) {

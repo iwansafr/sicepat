@@ -10,12 +10,12 @@ helper('system');
     <h1 class="mt-4">Dashboard</h1>
     <ol class="breadcrumb mb-4">
       <li class="breadcrumb-item">Dashboard</li>
-      <li class="breadcrumb-item active">Data TPS</li>
+      <li class="breadcrumb-item active">Data Cabup</li>
     </ol>
     <div class="card mb-4">
       <div class="card-header">
         <i class="fas fa-table mr-1"></i>
-        Data TPS
+        Data Cabup
       </div>
       <div class="card-body">
         <?php
@@ -23,14 +23,11 @@ helper('system');
           $message = $session->getFlashData('message');
           alert($message['msg'], $message['alert']);
         } ?>
-        <a href="/tps/excel" class="btn btn-sm btn-secondary"><i class="fa fa-file-excel"></i> Download</a>
-        <hr>
         <div class="table-responsive">
           <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
             <thead>
               <tr>
                 <th>No</th>
-                <th>Nik</th>
                 <th>Nama</th>
                 <th>Nomor</th>
                 <th>Action</th>
@@ -39,7 +36,6 @@ helper('system');
             <tfoot>
               <tr>
                 <th>No</th>
-                <th>Nik</th>
                 <th>Nama</th>
                 <th>Nomor</th>
                 <th>Action</th>
@@ -53,14 +49,12 @@ helper('system');
               ?>
                 <tr>
                   <td><?php echo $i; ?></td>
-                  <td><?php echo $value['nik']; ?></td>
                   <td><?php echo $value['nama']; ?></td>
                   <td><?php echo $value['no']; ?></td>
                   <td>
                     <div class="form-group form-inline">
-                      <a href="/tps/<?php echo $value['id'] . '/edit'; ?>" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a> |
-                      <a href="/tps/<?php echo $value['id']; ?>" class="btn btn-sm btn-success"><i class="fa fa-eye"></i></a> |
-                      <form action="/tps/<?php echo $value['id']; ?>" method="post">
+                      <a href="/cabup/<?php echo $value['id']; ?>/edit" class="btn btn-sm btn-primary"><i class="fa fa-pencil-alt"></i></a> |
+                      <form action="/cabup/<?php echo $value['id']; ?>" method="post">
                         <?= csrf_field() ?>
                         <input type="hidden" name="_method" value="DELETE">
                         <button type="submit" class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>

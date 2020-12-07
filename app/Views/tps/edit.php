@@ -20,7 +20,7 @@ $session = session();
       }
       ?>
 
-      <form action="/blt<?php echo !empty($data) ? '/' . $data['id'] : ''; ?>" method="post" enctype="multipart/form-data">
+      <form action="/tps<?php echo !empty($data) ? '/' . $data['id'] : ''; ?>" method="post" enctype="multipart/form-data">
         <?php
         if (!empty($data)) {
         ?>
@@ -45,7 +45,7 @@ $session = session();
                   $valid = '';
                   $value = !empty($data['nama_ktp']) ? $data['nama_ktp'] : old('nama_ktp');
                 }
-                echo form_input(['name' => 'nama_ktp', 'placeholder' => 'nama_ktp', 'class' => 'form-control ' . $valid, 'value' => $value]); ?>
+                echo form_input(['name' => 'nama_ktp', 'placeholder' => 'nama sesuai ktp', 'class' => 'form-control ' . $valid, 'value' => $value]); ?>
                 <div class="invalid-feedback">
                   <?php echo $validation->showError('nama_ktp'); ?>
                 </div>
