@@ -35,6 +35,7 @@ $routes->get('/', 'HomeController::index');
 
 $routes->resource('user', ['controller' => 'UserController']);
 
+$routes->get('/tps/json', 'TpsController::json');
 $routes->get('/tps/excel', 'TpsController::excel');
 $routes->get('/tps/desa', 'TpsController::list/6');
 $routes->get('/tps/kecamatan', 'TpsController::list/5');

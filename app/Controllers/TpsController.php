@@ -365,4 +365,10 @@ class TpsController extends BaseController
 
     $writer->save('php://output');
   }
+  public function json()
+  {
+    $tps = new Tps();
+    $data = $tps->findAll();
+    echo json_encode($data);
+  }
 }

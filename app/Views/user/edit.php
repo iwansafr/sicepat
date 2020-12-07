@@ -83,3 +83,10 @@ $session = session();
 </main>
 <?php
 $this->endSection();
+
+$this->section('js');
+?>
+<script src="/assets/js/user.js"></script>
+<?php
+$this->endSection();
+
